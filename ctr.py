@@ -73,7 +73,7 @@ if __name__ == '__main__':
         print (len(llave))
         exit()
     if len(iv) != 16:
-        print('La llave de entrada debe ser de 16 bytes')
+        print('El iv de entrada debe ser de 16 bytes')
         print (len(iv))
         exit()
     

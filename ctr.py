@@ -1,9 +1,3 @@
-"""
-AES ECB.
-
-Implementació de ECB no segura, no usar en producción
-"""
-
 import argparse
 import base64
 from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes

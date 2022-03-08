@@ -1,3 +1,6 @@
+#python3 ctr.py -p cifrar -i entrada.txt -o salida.txt -l '8VRIXx9HWXnbh0yoZECkDw==' -v 'rzzkk9W0NflHX97ZLNAV3A=='
+#comando usado
+
 import argparse
 import base64
 from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes

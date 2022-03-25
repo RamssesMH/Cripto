@@ -60,17 +60,6 @@ def privateBytesToKey(private_key_bytes):
 
     return private_key
 
-# RSA opera con numeros enteros, no bytes
-# es neceario convertir un archivo de bytes a un entero para procesarlo
-def int_to_bytes(i):
-    # asegurarse de que es un entero python
-    i = int(i)
-    return i.to_bytes((i.bit_length()+7)//8, byteorder='big')
-
-def bytes_to_int(b):
-    return int.from_bytes(b, byteorder='big')
-
-
 
 if __name__ == '__main__':
     all_args =  argparse.ArgumentParser()
@@ -93,21 +82,15 @@ if __name__ == '__main__':
     llave = file2.read()
     file2.close()
 
-    print(len(texto))
-
-    #Determinar si la llave es publica o privada
-    arr = llave.decode('utf-8').split('-')
-    if arr[5] == "BEGIN PUBLIC KEY":
-        llave = publicBytesToKey(llave)
-    elif arr[5] == "BEGIN RSA PRIVATE KEY":
-        llave = privateBytesToKey(llave)
 
     if operacion == 'cifrar':
+        llave = publicBytesToKey(llave)
         cifrado =   simple_rsa_encrypt(texto, llave)
         file3 = open(salida, "wb")
         file3.write(cifrado)
         file3.close()
     elif operacion == 'descifrar':
+        llave = privateBytesToKey(llave)
         cifrado =   simple_rsa_decrypt(texto, llave)
         file3 = open(salida, "wb")
         file3.write(cifrado)
@@ -115,4 +98,3 @@ if __name__ == '__main__':
 
     else: 
         print("Recuerda que las operaciones validas son cifrar/descifrar")
-
